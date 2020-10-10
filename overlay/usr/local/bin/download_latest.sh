@@ -9,7 +9,7 @@ rm 5.json
 echo "Downloading plex server with version: ${version}"
 fetch "${download_url}"
 
-echo "Updating pms"
+echo "Installing newest pms"
 rm -rf /usr/local/pms
 tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2" /usr/local/pms
 rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
