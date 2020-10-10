@@ -2,8 +2,8 @@
 
 echo "Finding latest plex version"
 fetch https://plex.tv/pms/downloads/5.json
-download_url=$(cat 5.json | jq -r '.computer.FreeBSD.releases[0].url')
-version=$(cat 5.json | jq -r '.computer.FreeBSD.version')
+download_url=$(jq -r '.computer.FreeBSD.releases[0].url' < 5.json)
+version=$(jq -r '.computer.FreeBSD.version' < 5.json)
 rm 5.json
 
 old_version=$(cat /usr/local/pms/version.txt 2>/dev/null || echo "123")
