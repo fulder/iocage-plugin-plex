@@ -14,7 +14,7 @@ set_auto_update() {
 }
 
 set_cron() {
-    echo "$cron_expression" /usr/local/bin/update_pma > new_cron
+    echo "$cron_expression" /usr/local/bin/update_pms > new_cron
 
     if crontab new_cron
     then
