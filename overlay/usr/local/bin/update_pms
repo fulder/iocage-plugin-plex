@@ -6,7 +6,6 @@ then
     exit 0
 fi
 
-
 echo "Finding latest plex version"
 fetch https://plex.tv/pms/downloads/5.json
 download_url=$(jq -r '.computer.FreeBSD.releases[0].url' < 5.json)
