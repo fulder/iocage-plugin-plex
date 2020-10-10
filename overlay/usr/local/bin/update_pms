@@ -22,7 +22,7 @@ else
     echo "Downloading plex server with version: ${version}"
     fetch "${download_url}"
 
-    echo "Uncompress donwloaded file"
+    echo "Uncompress downloaded file"
     tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
 
     echo "Installing newest pms"
