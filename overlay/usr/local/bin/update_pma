@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if ! sysrc -c -q plex_auto_update
+then
+    echo "Plex auto update disabled"
+    exit 0
+fi
+
+
 echo "Finding latest plex version"
 fetch https://plex.tv/pms/downloads/5.json
 download_url=$(jq -r '.computer.FreeBSD.releases[0].url' < 5.json)
@@ -11,9 +18,6 @@ old_version=$(cat /usr/local/pms/version.txt 2>/dev/null || echo "123")
 if [ "$old_version" = "$version" ]
 then
     echo "Version already up to date"
-elif ! sysrc -c -q plex_auto_update
-then
-    echo "Plex auto update disabled"
 else
     echo "Downloading plex server with version: ${version}"
     fetch "${download_url}"
