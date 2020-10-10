@@ -16,7 +16,7 @@ pms_start()
 {
     if checkyesno ${rcvar}; then
       echo "Starting PlexMediaServer"
-      su root -c 'cd /PlexMediaServer && ./start.sh'
+      su root -c 'cd /usr/local/pms && ./start.sh'
     fi
 }
 pms_stop()
