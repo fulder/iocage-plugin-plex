@@ -14,5 +14,6 @@ rm -rf /usr/local/pms
 tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
 mv "./PlexMediaServer-${version}" /usr/local/pms
 rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+echo "${version}" >> /usr/local/pms/version.txt
 
 echo "Download latest script complete"
