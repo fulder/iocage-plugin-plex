@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set_auto_update() {
+    if [ "$auto_update" != "true" ] && [ "$auto_update" != "false" ]
+    then
+        echo "Invalid plex auto_update value. Accepted values: true/false"
+        exit 1
+    else
+        sysrc -f /etc/rc.conf plex_auto_update="$auto_update"
+    fi
+}
+
+set_cron() {
+    echo "$cron_expression" /usr/local/bin/update_pma > new_cron
+
+    if crontab new_cron
+    then
+      sysrc -f /etc/rc.conf plex_cron="$cron_expression"
+    fi
+
+    rm new_cron
+}
+
+if [ "$1" = "auto_update" ]
+then
+    auto_update="$2"
+    set_auto_update
+elif [ "$1" = "cron" ]
+then
+    cron_expression="$2"
+    set_cron
+else
+    echo "Unknown option"
+fi

@@ -1,0 +1,21 @@
+{
+  "servicerestart": "service pms restart",
+  "serviceget": "/usr/local/bin/pmsget",
+  "serviceset": "/usr/local/bin/pmsset",
+  "options": {
+    "auto_update": {
+      "type": "bool",
+      "name": "Enable plex auto update",
+      "description": "Enable or disable automatic plex media server updates to newest version",
+      "default": true,
+      "requirerestart": false
+    },
+    "cron": {
+      "type": "string",
+      "name": "Auto update schedule",
+      "description": "Cron expression for when to try to update plex media server",
+      "default": "0 5 * * *",
+      "requirerestart": false
+    }
+  }
+}

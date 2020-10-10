@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$1" = "auto_update" ]
+then
+    sysrc plex_auto_update
+elif [ "$1" = "cron" ]
+then
+    sysrc plex_cron
+else
+    echo "Unknown option"
+fi
