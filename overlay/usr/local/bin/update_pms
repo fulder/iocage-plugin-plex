@@ -24,13 +24,13 @@ else
     echo "Uncompress donwloaded file"
     tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
 
-    service stop pms
+    service pms stop
     echo "Installing newest pms"
     rm -rf /usr/local/pms
     mv "./PlexMediaServer-${version}" /usr/local/pms
     rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
     echo "${version}" >> /usr/local/pms/version.txt
-    service start pms
+    service pms start
 
     echo "Download latest script complete"
 fi
