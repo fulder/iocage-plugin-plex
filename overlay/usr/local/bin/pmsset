@@ -3,10 +3,10 @@
 set_auto_update() {
     if [ "$auto_update" = "true" ]
     then
-        sysrc -f /etc/rc.conf plex_auto_update="YES"
+        sysrc -f /etc/rc.conf pms_auto_update="YES"
     elif [ "$auto_update" = "false" ]
     then
-        sysrc -f /etc/rc.conf -x plex_auto_update
+        sysrc -f /etc/rc.conf -x pms_auto_update
     else
         echo "Invalid plex auto_update value. Accepted values: true/false"
         exit 1
@@ -18,7 +18,7 @@ set_cron() {
 
     if crontab new_cron
     then
-      sysrc -f /etc/rc.conf plex_cron="$cron_expression"
+      sysrc -f /etc/rc.conf pms_cron="$cron_expression"
       rm new_cron
     else
       echo "Invalid cron expression"

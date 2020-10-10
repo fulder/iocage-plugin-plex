@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! sysrc -c -q plex_auto_update
+if ! sysrc -c -q pms_auto_update
 then
     echo "Plex auto update disabled"
     exit 0

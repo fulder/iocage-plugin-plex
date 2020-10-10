@@ -1,11 +1,11 @@
 #!/bin/sh
 
 get_auto_update() {
-    if sysrc -c -q plex_auto_update
+    if sysrc -c -q pms_auto_update
     then
-        echo "plex_auto_update=true"
+        echo "auto_update=true"
     else
-        echo "plex_auto_update=false"
+        echo "auto_update=false"
     fi
 }
 
@@ -14,7 +14,7 @@ then
     get_auto_update
 elif [ "$1" = "cron" ]
 then
-    sysrc plex_cron
+    sysrc pms_cron
 else
     echo "Unknown option"
 fi

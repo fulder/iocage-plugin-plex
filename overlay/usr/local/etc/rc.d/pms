@@ -8,20 +8,19 @@ name="pms"
 rcvar=`set_rcvar`
 start_cmd="${name}_start"
 stop_cmd="${name}_stop"
-extra_commands="update"
 
 load_rc_config $name
 
 pms_start()
 {
-    if checkyesno ${rcvar}; then
+    if checkyesno "${rcvar}"; then
       echo "Starting PlexMediaServer"
       su root -c 'cd /usr/local/pms && ./start.sh'
     fi
 }
 pms_stop()
 {
-    if checkyesno ${rcvar}; then
+    if checkyesno "${rcvar}"; then
     echo "Stopping PlexMediaServer"
       su root -c 'pkill -9 "Plex*"'
     fi
