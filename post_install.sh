@@ -3,10 +3,10 @@
 mkdir -p /usr/local/etc/rc.d
 
 chmod +x /usr/local/etc/rc.d/pms
-chmod +x /usr/local/bin/download_latest.sh
+chmod +x /usr/local/bin/update_pma
 
-echo "Starting download_latest script from post_install"
-/usr/local/bin/download_latest.sh
+echo "Starting update_pma script from post_install"
+/usr/local/bin/update_pma
 
 echo "Start pms service"
 chmod +x /usr/local/etc/rc.d/pms
