@@ -19,9 +19,11 @@ set_cron() {
     if crontab new_cron
     then
       sysrc -f /etc/rc.conf plex_cron="$cron_expression"
+      rm new_cron
+    else
+      echo "Invalid cron expression"
+      exit 1
     fi
-
-    rm new_cron
 }
 
 if [ "$1" = "auto_update" ]
