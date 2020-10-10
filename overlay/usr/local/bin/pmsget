@@ -9,7 +9,7 @@ get_auto_update() {
     fi
 }
 
-if [ "$1" = "autoupdate" ]
+if [ "$1" = "auto_update" ]
 then
     get_auto_update
 elif [ "$1" = "cron" ]
