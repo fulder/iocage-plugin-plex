@@ -11,7 +11,8 @@ fetch "${download_url}"
 
 echo "Installing newest pms"
 rm -rf /usr/local/pms
-tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2" /usr/local/pms
+tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+mv "./PlexMediaServer-${version}" /usr/local/pms
 rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
 
 echo "Download latest script complete"
