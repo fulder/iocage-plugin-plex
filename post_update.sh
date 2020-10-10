@@ -2,4 +2,4 @@
 
 /usr/local/bin/update_pms
 
-sysrc -f /etc/rc.conf bazarr_enable="YES"
+sysrc -f /etc/rc.conf pms_enable="YES"
