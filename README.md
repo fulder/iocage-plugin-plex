@@ -1,4 +1,4 @@
-Iocage [plex](https://www.plex.tv/) plugin for TrueNAS/FreeNAS including auto update. 
+Iocage [plex](https://www.plex.tv/) plugin for TrueNAS/FreeNAS including configurable auto update. 
 
 
 # Installing manually
