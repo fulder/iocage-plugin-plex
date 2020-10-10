@@ -22,12 +22,16 @@ else
     echo "Downloading plex server with version: ${version}"
     fetch "${download_url}"
 
+    echo "Uncompress donwloaded file"
+    tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+
+    service stop pms
     echo "Installing newest pms"
     rm -rf /usr/local/pms
-    tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
     mv "./PlexMediaServer-${version}" /usr/local/pms
     rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
     echo "${version}" >> /usr/local/pms/version.txt
+    service start pms
 
     echo "Download latest script complete"
 fi
