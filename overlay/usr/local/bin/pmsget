@@ -1,8 +1,17 @@
 #!/bin/sh
 
-if [ "$1" = "auto_update" ]
+get_auto_update() {
+    if sysrc -c -q plex_auto_update
+    then
+        echo "plex_auto_update=true"
+    else
+        echo "plex_auto_update=false"
+    fi
+}
+
+if [ "$1" = "autoupdate" ]
 then
-    sysrc plex_auto_update
+    get_auto_update
 elif [ "$1" = "cron" ]
 then
     sysrc plex_cron

@@ -1,12 +1,15 @@
 #!/bin/sh
 
 set_auto_update() {
-    if [ "$auto_update" != "true" ] && [ "$auto_update" != "false" ]
+    if [ "$auto_update" = "true" ]
     then
+        sysrc -f /etc/rc.conf plex_auto_update="YES"
+    elif [ "$auto_update" = "false" ]
+    then
+        sysrc -f /etc/rc.conf -x plex_auto_update
+    else
         echo "Invalid plex auto_update value. Accepted values: true/false"
         exit 1
-    else
-        sysrc -f /etc/rc.conf plex_auto_update="$auto_update"
     fi
 }
 
