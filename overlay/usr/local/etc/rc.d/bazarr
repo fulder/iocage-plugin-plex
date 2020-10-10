@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# PROVIDE: pms
+
+. /etc/rc.subr
+
+name="pms"
+rcvar=`set_rcvar`
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+update_cmd="${name}_update"
+extra_commands="update"
+
+load_rc_config $name
+
+pms_start()
+{
+    if checkyesno ${rcvar}; then
+      echo "Starting PlexMediaServer"
+      su root -c 'cd /PlexMediaServer && ./start.sh'
+    fi
+}
+pms_stop()
+{
+    if checkyesno ${rcvar}; then
+    echo "Stopping PlexMediaServer"
+      su root -c 'pkill -9 "Plex*"'
+    fi
+}
+pms_update()
+{
+    if checkyesno ${rcvar}; then
+      echo "Finding latest plex version"
+      fetch https://plex.tv/pms/downloads/5.json
+      download_url=$(cat 5.json | jq -r '.computer.FreeBSD.releases[0].url')
+      version=$(cat 5.json | jq -r '.computer.FreeBSD.version')
+      rm 5.json
+
+      echo "Downloading plex server with version: ${version}"
+      fetch "${download_url}"
+
+      echo "Unpacking zip"
+      tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+
+      pms_stop
+      echo "Updating current plex"
+      rm -rf PlexMediaServer
+      mv "./PlexMediaServer-${version}" PlexMediaServer
+      rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+      pms_start
+    fi
+}
+
+run_rc_command "$1"
