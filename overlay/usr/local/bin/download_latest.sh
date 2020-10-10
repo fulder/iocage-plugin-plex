@@ -8,7 +8,7 @@ rm 5.json
 
 old_version=$(cat /usr/local/pms/version.txt 2>/dev/null || echo "123")
 
-if [ "$old_version" == "$version" ]
+if [ "$old_version" = "$version" ]
 then
     echo "Version already up to date"
 else
