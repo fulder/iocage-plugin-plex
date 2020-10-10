@@ -11,7 +11,7 @@ old_version=$(cat /usr/local/pms/version.txt 2>/dev/null || echo "123")
 if [ "$old_version" = "$version" ]
 then
     echo "Version already up to date"
-elif sysrc -c -q plex_auto_update
+elif ! sysrc -c -q plex_auto_update
 then
     echo "Plex auto update disabled"
 else
