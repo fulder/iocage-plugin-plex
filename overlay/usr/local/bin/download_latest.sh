@@ -6,14 +6,21 @@ download_url=$(cat 5.json | jq -r '.computer.FreeBSD.releases[0].url')
 version=$(cat 5.json | jq -r '.computer.FreeBSD.version')
 rm 5.json
 
-echo "Downloading plex server with version: ${version}"
-fetch "${download_url}"
+old_version=$(cat /usr/local/pms/version.txt 2>/dev/null || echo "123")
 
-echo "Installing newest pms"
-rm -rf /usr/local/pms
-tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
-mv "./PlexMediaServer-${version}" /usr/local/pms
-rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
-echo "${version}" >> /usr/local/pms/version.txt
+if [ "$old_version" == "$version" ]
+then
+    echo "Version already up to date"
+else
+    echo "Downloading plex server with version: ${version}"
+    fetch "${download_url}"
 
-echo "Download latest script complete"
+    echo "Installing newest pms"
+    rm -rf /usr/local/pms
+    tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+    mv "./PlexMediaServer-${version}" /usr/local/pms
+    rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
+    echo "${version}" >> /usr/local/pms/version.txt
+
+    echo "Download latest script complete"
+fi
