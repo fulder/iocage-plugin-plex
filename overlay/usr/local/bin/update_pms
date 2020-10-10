@@ -18,16 +18,17 @@ if [ "$old_version" = "$version" ]
 then
     echo "Version already up to date"
 else
+    service pms stop
     echo "Downloading plex server with version: ${version}"
     fetch "${download_url}"
 
     echo "Uncompress donwloaded file"
     tar xzf "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
 
-    service pms stop
     echo "Installing newest pms"
     rm -rf /usr/local/pms
     mv "./PlexMediaServer-${version}" /usr/local/pms
+    chown -R root:wheel /usr/local/pms
     rm "PlexMediaServer-${version}-FreeBSD-amd64.tar.bz2"
     echo "${version}" >> /usr/local/pms/version.txt
     service pms start
