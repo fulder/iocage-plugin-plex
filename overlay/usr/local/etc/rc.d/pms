@@ -13,6 +13,7 @@ load_rc_config $name
 
 pms_start()
 {
+    export LD_LIBRARY_PATH="/usr/local/pms/lib"
     if checkyesno "${rcvar}"; then
       echo "Starting PlexMediaServer"
       su root -c 'cd /usr/local/pms && ./start.sh'
